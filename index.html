@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>GymProtein</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --lime: #c8ff00;
+      --lime-dim: #a3d100;
+      --dark: #0e0e0e;
+      --card: #161616;
+      --card2: #1e1e1e;
+      --border: #2a2a2a;
+      --red: #ff3b30;
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, #1a1a1a 39px, #1a1a1a 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, #1a1a1a 39px, #1a1a1a 40px);
+      font-family: 'Barlow', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 30px 16px 50px;
+    }
+
+    .phone {
+      width: 360px;
+      background: var(--card);
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px #222;
+      position: relative;
+    }
+
+    /* TOP BANNER */
+    .banner {
+      background: var(--lime);
+      padding: 14px 20px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .banner-icon {
+      font-size: 26px;
+      animation: pulse-icon 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-icon {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      50% {
+        transform: scale(1.15) rotate(-8deg);
+      }
+    }
+
+    .banner h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      color: #0e0e0e;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .banner p {
+      font-size: 11px;
+      color: #333;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* BODY */
+    .body {
+      padding: 20px;
+    }
+
+    /* INSTRUCCIONES */
+    .instrucciones {
+      background: #111;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--lime);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+    }
+
+    .instrucciones summary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--lime);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .instrucciones summary::after {
+      content: '▾';
+      margin-left: auto;
+      transition: transform 0.3s;
+    }
+
+    .instrucciones[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .instrucciones ol {
+      margin-top: 10px;
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    .instrucciones ol li span {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .instrucciones .tip {
+      margin-top: 8px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: #aaa;
+    }
+
+    .instrucciones .tip strong {
+      color: var(--lime);
+    }
+
+    /* LABEL */
+    .field-group {
+      margin-bottom: 12px;
+    }
+
+    .field-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--card2);
+      color: var(--text);
+      font-size: 15px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 500;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      outline: none;
+      appearance: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.1);
+    }
+
+    input.invalid {
+      border-color: var(--red);
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-6px);
+      }
+
+      40% {
+        transform: translateX(6px);
+      }
+
+      60% {
+        transform: translateX(-4px);
+      }
+
+      80% {
+        transform: translateX(4px);
+      }
+    }
+
+    input::placeholder {
+      color: #444;
+    }
+
+    select option {
+      background: #1e1e1e;
+      color: var(--text);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* SELECT WRAPPER */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--lime);
+      pointer-events: none;
+      font-size: 14px;
+    }
+
+    /* OBJETIVO BUTTONS */
+    .objetivo-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .obj-btn {
+      padding: 10px 6px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--card2);
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .obj-btn .obj-icon {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+
+    .obj-btn:hover {
+      border-color: #444;
+      color: #ccc;
+    }
+
+    .obj-btn.active {
+      border-color: var(--lime);
+      background: rgba(200, 255, 0, 0.08);
+      color: var(--lime);
+    }
+
+    /* ERROR */
+    .error-msg {
+      font-size: 12.5px;
+      color: var(--red);
+      font-weight: 600;
+      margin-bottom: 10px;
+      min-height: 18px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.3s;
+    }
+
+    /* BUTTON */
+    .calc-btn {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: none;
+      background: var(--lime);
+      color: #0e0e0e;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 4px 20px rgba(200, 255, 0, 0.25);
+      margin-top: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calc-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    }
+
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 255, 0, 0.35);
+    }
+
+    .calc-btn:active {
+      transform: scale(0.97);
+    }
+
+    .calc-btn.loading {
+      background: #8ab500;
+      pointer-events: none;
+    }
+
+    /* RESULTADO */
+    .resultado {
+      margin-top: 18px;
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+      transition: opacity 0.5s cubic-bezier(.22, 1, .36, 1), transform 0.5s cubic-bezier(.22, 1, .36, 1);
+      pointer-events: none;
+    }
+
+    .resultado.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .resultado-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--lime);
+      border-radius: 16px;
+      padding: 18px 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resultado-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(200, 255, 0, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .mascot-area {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    /* SVG MASCOT */
+    .mascot {
+      width: 90px;
+      height: 90px;
+    }
+
+    .mascot.flexing .arm-left {
+      animation: flex-left 0.6s ease-in-out infinite alternate;
+      transform-origin: 36px 40px;
+    }
+
+    .mascot.flexing .arm-right {
+      animation: flex-right 0.6s ease-in-out infinite alternate;
+      transform-origin: 54px 40px;
+    }
+
+    .mascot.flexing .body-main {
+      animation: bounce-body 0.6s ease-in-out infinite alternate;
+    }
+
+    .mascot.flexing .head {
+      animation: nod 1s ease-in-out infinite alternate;
+      transform-origin: 45px 20px;
+    }
+
+    .mascot.flexing .eye-l,
+    .mascot.flexing .eye-r {
+      animation: blink 1.5s step-end infinite;
+    }
+
+    @keyframes flex-left {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-40deg);
+      }
+    }
+
+    @keyframes flex-right {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(40deg);
+      }
+    }
+
+    @keyframes bounce-body {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes nod {
+      from {
+        transform: rotate(-5deg);
+      }
+
+      to {
+        transform: rotate(5deg);
+      }
+    }
+
+    @keyframes blink {
+
+      0%,
+      95%,
+      100% {
+        opacity: 1;
+      }
+
+      97% {
+        opacity: 0;
+      }
+    }
+
+    .numbers {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    .total-g {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 62px;
+      line-height: 1;
+      color: var(--lime);
+      text-shadow: 0 0 30px rgba(200, 255, 0, 0.4);
+      position: relative;
+    }
+
+    .total-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .stat-box {
+      background: #0e0e0e;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat-lbl {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .mensaje-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200, 255, 0, 0.1);
+      border: 1px solid rgba(200, 255, 0, 0.25);
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--lime);
+      letter-spacing: 0.5px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* CONFETTI */
+    .confetti-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 99;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* FOOTER */
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card2);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .footer a:hover {
+      border-color: var(--lime);
+      transform: scale(1.1);
+    }
+
+    .footer img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      filter: brightness(0.7);
+    }
+
+    .footer a:hover img {
+      filter: brightness(1);
+    }
+
+    /* COUNTER ANIMATION */
+    @keyframes count-up {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .count-anim {
+      animation: count-up 0.4s ease forwards;
+    }
+
+    /* Tooltip */
+    .tooltip-icon {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background: #333;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 9px;
+      line-height: 14px;
+      color: #aaa;
+      cursor: help;
+      margin-left: 4px;
+      vertical-align: middle;
+      position: relative;
+    }
+
+    .tooltip-icon:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 50%;
+      bottom: 120%;
+      transform: translateX(-50%);
+      background: #222;
+      border: 1px solid #333;
+      color: #ccc;
+      font-size: 11px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      padding: 6px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+      z-index: 10;
+      pointer-events: none;
+      white-space: pre;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="confetti-wrap" id="confettiWrap"></div>
+
+  <div class="phone">
+
+    <!-- BANNER -->
+    <div class="banner">
+      <div>
+        <h1>GYMPROTEIN</h1>
+        <p>CALCULA · COME · CRECE</p>
+      </div>
+      <div class="banner-icon" style="margin-left:auto">💪</div>
+    </div>
+
+    <div class="body">
+
+      <!-- INSTRUCCIONES -->
+      <details class="instrucciones" open>
+        <summary>📋 Cómo usar esto</summary>
+        <ol>
+          <li><span>Peso actual:</span> Cuánto pesas hoy en kg.</li>
+          <li><span>Peso objetivo:</span> Cuánto quieres pesar.</li>
+          <li><span>Comidas al día:</span> Cuántas veces comes (1–8).</li>
+          <li><span>Objetivo:</span> Elige tu meta de entrenamiento.</li>
+          <li>Dale <span>CALCULAR</span> y listo 🔥</li>
+        </ol>
+        <div class="tip">
+          <strong>💡 Tip:</strong> La fórmula usa ~2g de proteína por kg de peso corporal, ajustado según tu objetivo.
+        </div>
+      </details>
+
+      <!-- ERROR -->
+      <div class="error-msg" id="errorMsg"></div>
+
+      <!-- CAMPOS -->
+      <div class="row">
+        <div class="field-group">
+          <label class="field-label" for="pesoActual">
+            Peso actual <span class="tooltip-icon" data-tip="Tu peso en kg hoy">?</span>
+          </label>
+          <input type="number" id="pesoActual" placeholder="ej. 75" min="30" max="200">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="pesoObjetivo">
+            Peso objetivo <span class="tooltip-icon" data-tip="Cuánto quieres&#10;pesar en kg">?</span>
+          </label>
+          <input type="number" id="pesoObjetivo" placeholder="ej. 85" min="30" max="250">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="comidas">
+          Comidas al día <span class="tooltip-icon" data-tip="Entre 1 y 8 comidas diarias">?</span>
+        </label>
+        <input type="number" id="comidas" placeholder="ej. 4" value="4" min="1" max="8">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Tu objetivo</label>
+        <div class="objetivo-btns">
+          <button class="obj-btn" data-val="mantener" onclick="selObjetivo(this)">
+            <span class="obj-icon">⚖️</span> Mantener
+          </button>
+          <button class="obj-btn active" data-val="subir" onclick="selObjetivo(this)">
+            <span class="obj-icon">🐂</span> Subir masa
+          </button>
+          <button class="obj-btn" data-val="bajar" onclick="selObjetivo(this)">
+            <span class="obj-icon">🔥</span> Bajar grasa
+          </button>
+        </div>
+      </div>
+
+      <button class="calc-btn" id="calcBtn" onclick="calcular()">⚡ CALCULAR</button>
+
+      <!-- RESULTADO -->
+      <div class="resultado" id="resultado">
+        <div class="resultado-card">
+
+          <!-- MASCOT -->
+          <div class="mascot-area">
+            <svg class="mascot" id="mascot" viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- HEAD -->
+              <g class="head">
+                <circle cx="45" cy="22" r="14" fill="#e8c69a" />
+                <ellipse cx="45" cy="28" rx="9" ry="4" fill="#c9a87c" />
+                <!-- Hair -->
+                <ellipse cx="45" cy="10" rx="12" ry="6" fill="#222" />
+                <rect x="33" y="10" width="24" height="7" rx="3" fill="#222" />
+                <!-- Eyes -->
+                <circle class="eye-l" cx="40" cy="21" r="2.5" fill="#222" />
+                <circle class="eye-r" cx="50" cy="21" r="2.5" fill="#222" />
+                <circle cx="40.8" cy="20.2" r="0.8" fill="white" />
+                <circle cx="50.8" cy="20.2" r="0.8" fill="white" />
+                <!-- Smile -->
+                <path d="M40 26 Q45 30 50 26" stroke="#8a6040" stroke-width="1.5" stroke-linecap="round" fill="none" />
+                <!-- Eyebrows -->
+                <path d="M37 18.5 Q40 17 43 18.5" stroke="#5a3a1a" stroke-width="1.5" stroke-linecap="round"
+                  fill="none" />
+                <path d="M47 18.5 Q50 17 53 18.5" stroke="#5a3a1a" stroke-width="1.5" stroke-linecap="round"
+                  fill="none" />
+              </g>
+              <!-- NECK -->
+              <rect x="41" y="34" width="8" height="8" rx="3" fill="#e8c69a" />
+              <!-- BODY -->
+              <g class="body-main">
+                <rect x="28" y="40" width="34" height="30" rx="8" fill="#c8ff00" />
+                <!-- Shirt detail -->
+                <rect x="38" y="40" width="14" height="8" rx="0" fill="#b0e000" />
+                <text x="45" y="62" font-family="monospace" font-size="9" font-weight="900" fill="#0e0e0e"
+                  text-anchor="middle">GYM</text>
+              </g>
+              <!-- ARM LEFT -->
+              <g class="arm-left">
+                <rect x="16" y="40" width="12" height="8" rx="4" fill="#e8c69a" />
+                <!-- Bicep flex -->
+                <ellipse cx="16" cy="40" rx="7" ry="5" fill="#e8c69a" />
+                <!-- Dumbbell left -->
+                <rect x="4" y="37" width="14" height="4" rx="2" fill="#555" />
+                <rect x="2" y="34" width="4" height="10" rx="2" fill="#333" />
+                <rect x="16" y="34" width="4" height="10" rx="2" fill="#333" />
+              </g>
+              <!-- ARM RIGHT -->
+              <g class="arm-right">
+                <rect x="62" y="40" width="12" height="8" rx="4" fill="#e8c69a" />
+                <ellipse cx="74" cy="40" rx="7" ry="5" fill="#e8c69a" />
+                <!-- Dumbbell right -->
+                <rect x="72" y="37" width="14" height="4" rx="2" fill="#555" />
+                <rect x="70" y="34" width="4" height="10" rx="2" fill="#333" />
+                <rect x="84" y="34" width="4" height="10" rx="2" fill="#333" />
+              </g>
+              <!-- LEGS -->
+              <rect x="32" y="68" width="12" height="24" rx="6" fill="#333" />
+              <rect x="46" y="68" width="12" height="24" rx="6" fill="#333" />
+              <!-- Shoes -->
+              <ellipse cx="38" cy="92" rx="8" ry="5" fill="#222" />
+              <ellipse cx="52" cy="92" rx="8" ry="5" fill="#222" />
+            </svg>
+          </div>
+
+          <!-- NUMBERS -->
+          <div style="text-align:center">
+            <div class="numbers">
+              <div class="total-g" id="totalG">0</div>
+              <div class="total-label">g/día</div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:14px;font-weight:600;letter-spacing:0.5px">
+              PROTEÍNA DIARIA</div>
+
+            <div class="stats-row">
+              <div class="stat-box">
+                <div class="stat-val" id="statPorComida">—</div>
+                <div class="stat-lbl">g por comida</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-val" id="statPorKg">—</div>
+                <div class="stat-lbl">g por kg</div>
+              </div>
+            </div>
+
+            <div class="mensaje-badge" id="mensajeBadge"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /body -->
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <a href="https://github.com/tuusuario" target="_blank" title="GitHub">
+        <img src="https://raw.githubusercontent.com/luisalejope/Images/refs/heads/main/github.png" alt="GitHub">
+      </a>
+      <a href="https://tiktok.com/@tuusuario" target="_blank" title="TikTok">
+        <img src="https://raw.githubusercontent.com/luisalejope/Images/refs/heads/main/tiktok-icon.png" alt="TikTok">
+      </a>
+    </div>
+
+  </div><!-- /phone -->
+
+  <script>
+    let objetivoSeleccionado = 'subir';
+
+    function selObjetivo(btn) {
+      document.querySelectorAll('.obj-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      objetivoSeleccionado = btn.dataset.val;
+    }
+
+    function setError(msg) {
+      const el = document.getElementById('errorMsg');
+      el.innerHTML = msg ? `⚠️ ${msg}` : '';
+    }
+
+    function shakeField(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('invalid');
+      void el.offsetWidth; // reflow
+      el.classList.add('invalid');
+      setTimeout(() => el.classList.remove('invalid'), 600);
+    }
+
+    function animateCount(el, target, duration = 800) {
+      const start = 0;
+      const startTime = performance.now();
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(start + (target - start) * ease);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function lanzarConfetti() {
+      const wrap = document.getElementById('confettiWrap');
+      wrap.innerHTML = '';
+      const colors = ['#c8ff00', '#fff', '#ff3b30', '#0a84ff', '#ff9f0a'];
+      for (let i = 0; i < 48; i++) {
+        const p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.top = '-10px';
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.width = (6 + Math.random() * 8) + 'px';
+        p.style.height = (6 + Math.random() * 8) + 'px';
+        p.style.animationDuration = (1.2 + Math.random() * 1.8) + 's';
+        p.style.animationDelay = (Math.random() * 0.6) + 's';
+        p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        wrap.appendChild(p);
+      }
+      setTimeout(() => wrap.innerHTML = '', 3500);
+    }
+
+    function calcular() {
+      const pesoActualRaw = document.getElementById('pesoActual').value.trim();
+      const pesoObjetivoRaw = document.getElementById('pesoObjetivo').value.trim();
+      const comidasRaw = document.getElementById('comidas').value.trim();
+
+      const pesoActual = parseFloat(pesoActualRaw);
+      const pesoObjetivo = parseFloat(pesoObjetivoRaw);
+      const comidas = parseInt(comidasRaw);
+
+      const resultadoDiv = document.getElementById('resultado');
+      setError('');
+      resultadoDiv.classList.remove('show');
+
+      // VALIDACIONES
+      if (!pesoActualRaw || !pesoObjetivoRaw || !comidasRaw) {
+        setError('Completa todos los campos, bro 😅');
+        if (!pesoActualRaw) shakeField('pesoActual');
+        if (!pesoObjetivoRaw) shakeField('pesoObjetivo');
+        if (!comidasRaw) shakeField('comidas');
+        return;
+      }
+
+      if (isNaN(pesoActual) || pesoActual < 30 || pesoActual > 200) {
+        setError('Peso actual inválido. Debe ser entre 30 y 200 kg 🤨');
+        shakeField('pesoActual');
+        return;
+      }
+
+      if (isNaN(pesoObjetivo) || pesoObjetivo < 30 || pesoObjetivo > 250) {
+        setError('Peso objetivo inválido. Entre 30 y 250 kg 📏');
+        shakeField('pesoObjetivo');
+        return;
+      }
+
+      if (isNaN(comidas) || comidas < 1 || comidas > 8) {
+        setError('Comidas: entre 1 y 8 al día 💀');
+        shakeField('comidas');
+        return;
+      }
+
+      // Aviso: diferencia muy grande
+      const diferencia = Math.abs(pesoObjetivo - pesoActual);
+      if (diferencia > 40) {
+        setError('Esa diferencia de peso es mucha... ¿está bien? 🧐');
+        shakeField('pesoObjetivo');
+        return;
+      }
+
+      // CÁLCULO
+      let factorBase = 2.0;
+      if (objetivoSeleccionado === 'subir') factorBase = 2.2;
+      if (objetivoSeleccionado === 'bajar') factorBase = 2.4;
+
+      const proteina = Math.round(pesoActual * factorBase);
+      const porComida = (proteina / comidas).toFixed(1);
+      const porKg = factorBase.toFixed(1);
+
+      // MENSAJES
+      const mensajes = {
+        subir: ['🐂 Modo volumen: a comer', '💪 Modo bulk activado', '🥩 Toca crecer, campeón'],
+        bajar: ['🔥 Modo shredding ON', '✂️ Definición activada', '🥗 A cortar grasa, crack'],
+        mantener: ['⚖️ Modo mantenimiento', '🎯 Steady mode activado', '💡 Balance perfecto']
+      };
+      const opts = mensajes[objetivoSeleccionado];
+      const msg = opts[Math.floor(Math.random() * opts.length)];
+
+      if (pesoObjetivo > pesoActual) {
+        document.getElementById('mensajeBadge').textContent = msg + ' → sube ' + diferencia + 'kg';
+      } else if (pesoObjetivo < pesoActual) {
+        document.getElementById('mensajeBadge').textContent = msg + ' → baja ' + diferencia + 'kg';
+      } else {
+        document.getElementById('mensajeBadge').textContent = msg + ' → en tu punto';
+      }
+
+      // RENDER CON ANIMACIÓN
+      const totalEl = document.getElementById('totalG');
+      document.getElementById('statPorComida').textContent = porComida + 'g';
+      document.getElementById('statPorKg').textContent = porKg + 'g';
+
+      const btn = document.getElementById('calcBtn');
+      btn.classList.add('loading');
+      btn.textContent = '⏳ Calculando...';
+
+      setTimeout(() => {
+        resultadoDiv.classList.add('show');
+        animateCount(totalEl, proteina, 900);
+
+        // Mascot flexing
+        const mascot = document.getElementById('mascot');
+        mascot.classList.add('flexing');
+
+        lanzarConfetti();
+
+        btn.classList.remove('loading');
+        btn.textContent = '⚡ CALCULAR';
+      }, 400);
+    }
+  </script>
+
+</body>
+
+</html>
